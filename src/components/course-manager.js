@@ -7,6 +7,7 @@ import courseService, {findAllCourses, deleteCourse} from "../services/course-se
 
 class CourseManager extends React.Component {
   state = {
+    inputTitle : 'New Course',
     courses: [],
     qwe: 123,
     sdf: 456
@@ -28,6 +29,7 @@ class CourseManager extends React.Component {
           //   }
           // })
         })))
+
   }
 
   componentDidMount = () =>
@@ -40,7 +42,7 @@ class CourseManager extends React.Component {
 
   addCourse = () => {
     const newCourse = {
-      title: "New Course",
+      title: this.state.inputTitle,
       owner: "New Owner",
       lastModified: "Never"
     }
@@ -53,7 +55,11 @@ class CourseManager extends React.Component {
                 course
               ]
             })))
-
+        .then(
+            this.setState({
+                inputTitle: "",
+            })
+        )
     // this.state.courses.push(newCourse)
     // this.setState(this.state)
   }
@@ -108,7 +114,15 @@ class CourseManager extends React.Component {
                         Course Manager
                     </div>
                     <div className="col-8">
-                        <input className="form-control" placeholder="New Course Title"/>
+                        <input
+                            onChange={ (e) =>
+                                this.setState({
+                                    inputTitle: e.target.value
+                                })
+                            }
+                            value={this.state.inputTitle}
+                            className="form-control" placeholder="New Course Title"/>
+
                     </div>
                     <div className="col-1">
                         <i onClick={this.addCourse} className="fas fa-plus-circle fa-2x color-me-red"></i>
@@ -116,7 +130,11 @@ class CourseManager extends React.Component {
                 </div>
             </div>
             <div>
-                <i onClick={this.addCourse} className="fas fa-plus-circle fa-4x color-me-red float-right my-controls-at-top-right"></i>
+                <i onClick={async () => {
+                    await this.addCourse
+
+                }}
+                   className="fas fa-plus-circle fa-4x color-me-red float-right my-controls-at-top-right"/>
             </div>
             {/*<i className="fas fa-plus-circle fa-4x color-me-red float-right"></i>*/}
           <Route path="/courses/table">
