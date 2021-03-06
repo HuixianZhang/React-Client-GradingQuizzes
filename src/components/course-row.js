@@ -12,6 +12,7 @@ const CourseRow = (
     }) => {
     const [editing, setEditing] = useState(false)
     const [newTitle, setNewTitle] = useState(title)
+    const courseId = course._id
 
     const saveTitle = () => {
         setEditing(false)
@@ -21,13 +22,15 @@ const CourseRow = (
         }
         updateCourse(newCourse)
     }
-
+    console.log(courseId)
     return (
         <tr>
             <td>
                 {
                     !editing &&
-                    <Link to="/courses/editor">
+
+                    // <Link to={`/courses/table/editor/${course._id}`}>
+                    <Link to={`/courses/editor/${course._id}`}>
                         {title}
                     </Link>
                 }
