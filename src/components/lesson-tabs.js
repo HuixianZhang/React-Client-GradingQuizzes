@@ -17,7 +17,7 @@ const LessonTabs = (
         updateLesson,
         deleteLesson=(item) => alert("delete " + item._id)
     }) => {
-    const {courseId, moduleId, lessonId} = useParams();
+    const {courseId, moduleId, lessonId, layout} = useParams();
     useEffect(() => {
         console.log("LOAD LESSONS FOR MODULE: " + moduleId)
         if(moduleId !== "undefined" && typeof moduleId !== "undefined") {
@@ -36,7 +36,7 @@ const LessonTabs = (
                         <li className={`nav-item ${lesson._id === lessonId ? 'active' : ''}`}>
                             <EditableItem
                                 // active={lesson._id === lessonId}
-                                to={`/courses/editor/${courseId}/${moduleId}/${lesson._id}`}
+                                to={`/courses/${layout}/editor/${courseId}/${moduleId}/${lesson._id}`}
                                 updateItem={updateLesson}
                                 deleteItem={deleteLesson}
                                 item={lesson}/>

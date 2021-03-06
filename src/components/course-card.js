@@ -28,7 +28,7 @@ const CourseCard = (
                     <h5 className="card-title">
                         {!editing &&
                         // <Link to="/courses/editor">
-                        <Link to={`/courses/editor/${course._id}`}>
+                        <Link to={`/courses/grid/editor/${course._id}`}>
                             {title}
                         </Link>
                         }
@@ -45,7 +45,7 @@ const CourseCard = (
                         content.</p>
                     <img src={``}/>
                     {/*<Link to="/courses/editor" className="btn btn-primary">*/}
-                    <Link to={`/courses/editor/${course._id}`} className="btn btn-primary">
+                    <Link to={`/courses/grid/editor/${course._id}`} className="btn btn-primary">
                         {course.title}
                     </Link>
                     <i onClick={() => deleteCourse(course)} className="fas fa-trash"></i>

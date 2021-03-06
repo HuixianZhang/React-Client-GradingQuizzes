@@ -16,7 +16,7 @@ const TopicTabs = (
         updateTopic,
         deleteTopic=(item) => alert("delete " + item._id)
     }) => {
-    const {courseId, moduleId, lessonId, topicId} = useParams();
+    const {courseId, moduleId, lessonId, topicId, layout} = useParams();
     useEffect(() => {
 
         // topics=[]
@@ -41,7 +41,7 @@ const TopicTabs = (
                         <li className={`nav-item ${topic._id === topicId ? 'active' : ''}`}>
                             <EditableItem
                                 // active={lesson._id === lessonId}
-                                to={`/courses/editor/${courseId}/${moduleId}/${lessonId}/${topic._id}`}
+                                to={`/courses/${layout}/editor/${courseId}/${moduleId}/${lessonId}/${topic._id}`}
                                 updateItem={updateTopic}
                                 deleteItem={deleteTopic}
                                 item={topic}/>

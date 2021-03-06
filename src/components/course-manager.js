@@ -129,13 +129,13 @@ class CourseManager extends React.Component {
                 deleteCourse={this.deleteCourse}
                 courses={this.state.courses}/>
           </Route>
-            <Route path={["/courses/editor/:courseId",
-                "/courses/editor/:courseId/:moduleId",
-                "/courses/editor/:courseId/:moduleId/:lessonId",
-                "/courses/editor/:courseId/:moduleId/:lessonId/:topicId"]}
-                   exact={true}
-                   render={(props) => <CourseEditor {...props}/>}>
-            </Route>
+            {/*<Route path={["/courses/editor/:courseId",*/}
+            {/*    "/courses/editor/:courseId/:moduleId",*/}
+            {/*    "/courses/editor/:courseId/:moduleId/:lessonId",*/}
+            {/*    "/courses/editor/:courseId/:moduleId/:lessonId/:topicId"]}*/}
+            {/*       exact={true}*/}
+            {/*       render={(props) => <CourseEditor {...props}/>}>*/}
+            {/*</Route>*/}
             {/*<Switch>*/}
             {/*    <Route path={["/courses/table/editor/:courseId",*/}
             {/*        "/courses/table/editor/:courseId/:moduleId",*/}

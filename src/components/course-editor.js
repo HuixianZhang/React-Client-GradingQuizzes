@@ -18,13 +18,14 @@ const reducer = combineReducers({
 
 const store = createStore(reducer)
 
-const CourseEditor = ({history}) => {
+const CourseEditor = ({history,props}) => {
     console.log(history)
     const {courseId, moduleId} = useParams();
     return (
         <Provider store={store}>
             <div>
                 <h2>
+                    {/*<Link to={`/courses/${props.match.params.layout}`}>*/}
                     <Link to="/courses/table">
                         <i className="fas fa-arrow-left"></i>
                     </Link>
