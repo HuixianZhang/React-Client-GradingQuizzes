@@ -7,11 +7,7 @@ import moduleService from "../services/module-service";
 
 const LessonTabs = (
     {
-        lessons=[
-            {_id: "123", title: "Lesson A"},
-            {_id: "123", title: "Lesson B"},
-            {_id: "123", title: "Lesson C"}
-        ],
+        lessons=[],
         findLessonsForModule,
         createLessonForModule,
         updateLesson,
@@ -20,7 +16,10 @@ const LessonTabs = (
     const {courseId, moduleId, lessonId, layout} = useParams();
     useEffect(() => {
         console.log("LOAD LESSONS FOR MODULE: " + moduleId)
-        if(moduleId !== "undefined" && typeof moduleId !== "undefined") {
+        if(moduleId !== "undefined" && typeof moduleId !== "undefined" && courseId !== "undefined" && typeof courseId !== "undefined") {
+            findLessonsForModule(moduleId)
+        }
+        else{
             findLessonsForModule(moduleId)
         }
     }, [moduleId])
