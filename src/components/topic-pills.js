@@ -48,9 +48,9 @@ const TopicTabs = (
                         </li>
                     )
                 }
-                <li>
+                {   lessonId !== undefined && <li>
                     <i onClick={() => createTopicForLesson(lessonId)} className="fas fa-plus"></i>
-                </li>
+                </li>}
             </ul>
         </div>)}
 

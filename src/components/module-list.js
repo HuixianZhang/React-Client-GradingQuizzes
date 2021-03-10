@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import EditableItem from "./editable-item";
 import {useParams} from "react-router-dom";
 import moduleService from "../services/module-service";
+import lessonService from "../services/lesson-service";
 
 const ModuleList = (
     {
@@ -55,11 +56,28 @@ const dtpm = (dispatch) => {
         },
         deleteModule: (item) =>
             moduleService.deleteModule(item._id)
-                .then(status =>
-                    dispatch({
-                    type: "DELETE_MODULE",
-                    moduleToDelete: item
-                })),
+                .then(status => {
+                        dispatch({
+                            type: "DELETE_MODULE",
+                            moduleToDelete: item
+                        })
+                        dispatch({
+                            type: "FIND_LESSONS",
+                            lessons: []
+                        })
+                        dispatch({
+                            type: "FIND_TOPICS",
+                            topics: []
+                        })
+                    }
+                    ),
+        // deleteModule: (item) =>
+        //     moduleService.deleteModule(item._id)
+        //         .then(status =>
+        //                 dispatch({
+        //                     type: "DELETE_MODULE",
+        //                     moduleToDelete: item
+        //                 })),
         updateModule: (module) =>
             moduleService.updateModule(module._id, module)
                 .then(status => dispatch({

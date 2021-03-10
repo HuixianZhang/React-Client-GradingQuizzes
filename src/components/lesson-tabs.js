@@ -23,7 +23,7 @@ const LessonTabs = (
             findLessonsForModule(moduleId)
         }
     }, [moduleId])
-
+    console.log("module id is:" + moduleId)
     console.log("lesson id is:" + lessonId)
     return(
         <div>
@@ -42,9 +42,9 @@ const LessonTabs = (
                         </li>
                     )
                 }
-                <li>
+                {   moduleId !== undefined && <li>
                     <i onClick={() => createLessonForModule(moduleId)} className="fas fa-plus"></i>
-                </li>
+                </li>}
             </ul>
         </div>)}
 

@@ -19,7 +19,7 @@ const EditableItem = (
                     <Link className={`nav-link ${active?'active':''}`} to={to}>
                         {item.title} {JSON.stringify(active)}
                     </Link>
-                    <i onClick={() => setEditing(true)} className="fas fa-edit"></i>
+                    <i onClick={() => setEditing(true)} className="fas fa-edit float-right"></i>
                 </>
             }
             {
@@ -35,7 +35,7 @@ const EditableItem = (
                     <i onClick={() => {
                         setEditing(false)
                         updateItem(cachedItem)
-                    }} className="fas fa-check"></i>
+                    }} className="fas fa-check float-right"></i>
                     <i onClick={() => deleteItem(item)} className="fas fa-times"></i>
                 </>
             }
