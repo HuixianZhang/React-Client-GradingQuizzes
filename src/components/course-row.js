@@ -13,6 +13,8 @@ const CourseRow = (
     const [editing, setEditing] = useState(false)
     const [newTitle, setNewTitle] = useState(title)
     const courseId = course._id
+    // const coursetitle = title
+
 
     const saveTitle = () => {
         setEditing(false)
@@ -23,6 +25,7 @@ const CourseRow = (
         updateCourse(newCourse)
     }
     console.log(courseId)
+    console.log('row title is: ' + course.title)
     return (
         <tr>
             <td>
@@ -31,7 +34,7 @@ const CourseRow = (
 
                     // <Link to={`/courses/table/editor/${course._id}`}>
                     <Link to={`/courses/table/editor/${course._id}`}>
-                        {title}
+                        {course.title}
                     </Link>
                 }
                 {

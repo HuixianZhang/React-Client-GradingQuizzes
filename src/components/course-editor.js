@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {Link, useParams} from "react-router-dom";
 import moduleReducer from "../reducers/modules-reducer";
 import lessonReducer from "../reducers/lesson-reducer";
@@ -8,6 +8,13 @@ import {Provider} from "react-redux";
 import ModuleList from "./module-list";
 import LessonTabs from "./lesson-tabs";
 import TopicTabs from "./topic-pills";
+import CourseRow from "./course-row";
+// import {useEffect} from "react/cjs/react.production.min";
+import courseService, {deleteCourse, findCourseById} from "../services/course-service";
+
+
+
+
 
 const reducer = combineReducers({
     moduleReducer: moduleReducer,
@@ -18,9 +25,18 @@ const reducer = combineReducers({
 
 const store = createStore(reducer)
 
-const CourseEditor = ({history,props}) => {
-    console.log(history)
+const CourseEditor = ({history}) => {
+    // console.log("props is:" + props)
     const {courseId, moduleId, layout} = useParams();
+    const [courseTitle, setCourseTitle] = useState('');
+
+    const getTitle = (courseId) => {
+        findCourseById(courseId)  // Imported from my course-service
+            .then(course => setCourseTitle(course.title));
+    }
+    useEffect(() => getTitle(courseId));
+    //
+    console.log('editor title is' + courseTitle)
     return (
         <Provider store={store}>
             <div>
@@ -31,7 +47,7 @@ const CourseEditor = ({history,props}) => {
                         <i className="fas fa-arrow-left"></i>
                     </Link>
                     {/*Course Editor {courseId} {moduleId}*/}
-                    Course Editor
+                    Course Editor : {courseTitle}
                     <i onClick={() => history.goBack()}
                        className="fas fa-times float-right"></i>
                 </h2>
