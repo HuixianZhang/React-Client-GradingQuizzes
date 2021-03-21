@@ -57,7 +57,7 @@ import topicService from "../../services/topic-service";
 //                                         deleteWidget(_widget)}
 //                                     } className="fas fa-trash float-right"></i>
 //                                     <i onClick={() => {
-//                                         updateWidget(widget)
+//                                         // updateWidget(widget)
 //                                         setEditing(false)
 //                                         console.log("inside update: ",widget)
 //                                         // isEditing = false
@@ -76,6 +76,8 @@ import topicService from "../../services/topic-service";
 //                             {
 //                                 _widget.type === "HEADING" &&
 //                                 <HeadingWidget
+//                                     // updateWidget = {updateWidget}
+//                                     // deleteWidget = {deleteWidget}
 //                                     // deleteWidget={deleteWidget}
 //                                     setWidget={setWidget}
 //                                     editing={editing}
@@ -84,6 +86,8 @@ import topicService from "../../services/topic-service";
 //                             {
 //                                 _widget.type === "PARAGRAPH" &&
 //                                 <ParagraphWidget
+//                                     // updateWidget = {updateWidget}
+//                                     // deleteWidget = {deleteWidget}
 //                                     setWidget={setWidget}
 //                                     editing={editing}
 //                                     widget={widget}/>
@@ -142,20 +146,17 @@ const WidgetList = () => {
     const {topicId} = useParams()
     // const widgetId = _widget.id
     // console.log(widgetId)
-    // TODO: move all state handling to widgets-reducer.js
     const [widgets, setWidgets] = useState([])
     const [widget, setWidget] = useState({})
     const widgetId = widget.id
     console.log('widget id is:' + widgetId)
     useEffect(() => {
-        // TODO: move all server communication to widgets-service.js
         fetch(`https://thawing-cove-99454.herokuapp.com/api/topics/${topicId}/widgets`)
             .then(response => response.json())
             .then(widgets => setWidgets(widgets))
     }, [topicId])
 
     const createWidget = () => {
-        // TODO: move all server communication to widgets-service
         fetch(`https://thawing-cove-99454.herokuapp.com/api/topics/${topicId}/widgets`, {
             method: 'POST',
             body: JSON.stringify({type: "HEADING", size: 1, text: "New Widget"}),
@@ -168,7 +169,6 @@ const WidgetList = () => {
     }
 
     const deleteWidget = (id) =>
-        // TODO: move all server communication to widgets-service.js
         fetch(`https://thawing-cove-99454.herokuapp.com/api/widgets/${id}`, {
             method: "DELETE"
         }).then((status) => {
@@ -176,7 +176,6 @@ const WidgetList = () => {
         })
 
     const updateWidget = (id, widget) =>
-        // TODO: move all server communication to widgets-service.js
         fetch(`https://thawing-cove-99454.herokuapp.com/api/widgets/${id}`, {
             method: "PUT",
             body: JSON.stringify(widget),
@@ -248,13 +247,11 @@ export default WidgetList
 //     const {topicId} = useParams()
 //     // const widgetId = _widget.id
 //     // console.log(widgetId)
-//     // TODO: move all state handling to widgets-reducer.js
 //     // const [widgets, setWidgets] = useState([])
 //     const [widget, setWidget] = useState({})
 //     const widgetId = widget.id
 //     console.log('widget id is:' + widgetId)
 //     useEffect(() => {
-//         // TODO: move all server communication to widgets-service.js
 //         findWidgetsForTopic(topicId)
 //         // fetch(`http://localhost:8080/api/topics/${topicId}/widgets`)
 //         //     .then(response => response.json())
@@ -262,7 +259,6 @@ export default WidgetList
 //     }, [topicId])
 //
 //     // const createWidget = () => {
-//     //     // TODO: move all server communication to widgets-service
 //     //     fetch(`http://localhost:8080/api/topics/${topicId}/widgets`, {
 //     //         method: 'POST',
 //     //         body: JSON.stringify({type: "HEADING", size: 1, text: "New Widget"}),
@@ -275,7 +271,6 @@ export default WidgetList
 //     // }
 //     //
 //     // const deleteWidget = (id) =>
-//     //     // TODO: move all server communication to widgets-service.js
 //     //     fetch(`http://localhost:8080/api/widgets/${id}`, {
 //     //         method: "DELETE"
 //     //     }).then((status) => {
@@ -283,7 +278,6 @@ export default WidgetList
 //     //     })
 //     //
 //     // const updateWidget = (id, widget) =>
-//     //     // TODO: move all server communication to widgets-service.js
 //     //     fetch(`http://localhost:8080/api/widgets/${id}`, {
 //     //         method: "PUT",
 //     //         body: JSON.stringify(widget),
