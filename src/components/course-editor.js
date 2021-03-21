@@ -3,23 +3,23 @@ import {Link, useParams} from "react-router-dom";
 import moduleReducer from "../reducers/modules-reducer";
 import lessonReducer from "../reducers/lesson-reducer";
 import topicReducer from "../reducers/topic-reducer";
+import widgetReducer from "../reducers/widgets-reducer";
 import {combineReducers, createStore} from "redux";
 import {Provider} from "react-redux";
 import ModuleList from "./module-list";
 import LessonTabs from "./lesson-tabs";
 import TopicTabs from "./topic-pills";
-import CourseRow from "./course-row";
-// import {useEffect} from "react/cjs/react.production.min";
+import WidgetList from "./widgets/widget-list";
+
 import courseService, {deleteCourse, findCourseById} from "../services/course-service";
-
-
 
 
 
 const reducer = combineReducers({
     moduleReducer: moduleReducer,
     lessonReducer: lessonReducer,
-    topicReducer: topicReducer
+    topicReducer: topicReducer,
+    widgetReducer: widgetReducer
 })
 
 
@@ -59,6 +59,7 @@ const CourseEditor = ({history}) => {
                         <LessonTabs/>
                         {/*<h1>topic</h1>*/}
                         <TopicTabs/>
+                        <WidgetList/>
                     </div>
                 </div>
 
