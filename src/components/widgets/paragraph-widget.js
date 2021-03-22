@@ -1,34 +1,55 @@
 import React, {useState, useEffect} from 'react'
 
-const ParagraphWidget = ({widget, setWidget, editing}) => {
+const ParagraphWidget = (
+    {  _widget,
+        widget,
+        setWidget,
+        updateWidget,
+        deleteWidget
+    }) => {
+    const [editing, setEditing] = useState(false)
     return (
         <div>
-            {/*<select onChange={(e) => setWidget(widget => ({...widget, type: e.target.type}))} className="form-control">*/}
-            {/*    <option value={1}>Heading</option>*/}
-            {/*    <option value={2}>Paragraph</option>*/}
-            {/*</select>*/}
-            <select onChange={(e) => {
-                setWidget(widget => ({...widget, type: e.target.options[e.target.selectedIndex].value}))
-                console.log(e.target.options[e.target.selectedIndex].value)
-                // console.log(widget.target.value)
-
-            }} value={widget.type} className="form-control">
-                <option value={'PARAGRAPH'}>Paragraph</option>
-                <option value={'HEADING'}>Heading</option>
-
-            </select>
+            <h2>Paragraph Widget</h2>
             {
                 editing &&
+                <div>
+                    <i onClick={() => {
+                        deleteWidget(_widget)}
+                    } className="fas fa-trash float-right"></i>
+                    <i onClick={() => {
+                        updateWidget(widget)
+                        setEditing(false)
+                        console.log("inside update: ",widget)
+
+                    }} className="fas fa-check float-right"></i>
+
+                    <select onChange={(e) => {
+                    setWidget(widget => ({...widget, type: e.target.options[e.target.selectedIndex].value}))
+                    console.log(e.target.options[e.target.selectedIndex].value)
+
+                }} value={widget.type} className="form-control">
+                    <option value={'PARAGRAPH'}>Paragraph</option>
+                    <option value={'HEADING'}>Heading</option>
+
+                </select>
                 <textarea
                     onChange={(e) => setWidget({...widget, text: e.target.value})}
                     value={widget.text}
                     className="form-control"></textarea>
+                </div>
             }
             {
                 !editing &&
+                <div>
+                <i onClick={() => {
+                    setEditing(true)
+                    setWidget(_widget)
+                }} className="fas fa-cog float-right"></i>
                 <p>
-                    {widget.text}
+                    {_widget.text}
                 </p>
+                </div>
             }
         </div>
     )
