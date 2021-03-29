@@ -28,6 +28,7 @@ const HeadingWidget = (
                 setWidget(_widget)
             }} className="fas fa-cog float-right"></i>
 
+
         }
 
         {
@@ -50,6 +51,8 @@ const HeadingWidget = (
 
                     <option value={'HEADING'}>Heading</option>
                     <option value={'PARAGRAPH'}>Paragraph</option>
+                    <option value={'IMAGE'}>Image</option>
+                    <option value={'LIST'}>List</option>
                 </select>
 
                 <input onChange={(e) => {

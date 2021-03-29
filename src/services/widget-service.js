@@ -1,7 +1,7 @@
 
 export const createWidget = (topicId) =>
-    fetch(`https://thawing-cove-99454.herokuapp.com/api/topics/${topicId}/widgets`, {
-    // fetch(`http://localhost:8080/api/topics/${topicId}/widgets`, {
+    // fetch(`https://thawing-cove-99454.herokuapp.com/api/topics/${topicId}/widgets`, {
+    fetch(`http://localhost:8080/api/topics/${topicId}/widgets`, {
         method: 'POST',
         body: JSON.stringify({type: "HEADING", size: 1, text: "New Widget"}),
         headers: {
@@ -12,15 +12,15 @@ export const createWidget = (topicId) =>
         // .then(widget => setWidgets((widgets) => [...widgets, widget]))
 
 export const deleteWidget = (widgetId) =>
-    fetch(`https://thawing-cove-99454.herokuapp.com/api/widgets/${widgetId}`, {
-    // fetch(`http://localhost:8080/api/widgets/${widgetId}`, {
+    // fetch(`https://thawing-cove-99454.herokuapp.com/api/widgets/${widgetId}`, {
+    fetch(`http://localhost:8080/api/widgets/${widgetId}`, {
         method: "DELETE"
     })
         .then(response => response.json())
 
 const updateWidget = (widgetId, widget) =>
-    fetch(`https://thawing-cove-99454.herokuapp.com/api/widgets/${widgetId}`, {
-    // fetch(`http://localhost:8080/api/widgets/${widgetId}`, {
+    // fetch(`https://thawing-cove-99454.herokuapp.com/api/widgets/${widgetId}`, {
+    fetch(`http://localhost:8080/api/widgets/${widgetId}`, {
 
         method: "PUT",
         body: JSON.stringify(widget),
@@ -30,8 +30,8 @@ const updateWidget = (widgetId, widget) =>
     }) .then(response => response.json())
 
 export const findWidgetsForTopic = (topicId) =>
-    fetch(`https://thawing-cove-99454.herokuapp.com/api/topics/${topicId}/widgets`)
-    // fetch(`http://localhost:8080/api/topics/${topicId}/widgets`)
+    // fetch(`https://thawing-cove-99454.herokuapp.com/api/topics/${topicId}/widgets`)
+    fetch(`http://localhost:8080/api/topics/${topicId}/widgets`)
         .then(response => response.json())
 
 // export const findWidById = (courseId) =>
