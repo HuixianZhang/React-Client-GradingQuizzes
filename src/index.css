@@ -18,3 +18,10 @@ code {
   color: white;
   background-color: blue;
 }
+
+.color-green {
+  color: green;
+}
+.color-red {
+  color: red;
+}

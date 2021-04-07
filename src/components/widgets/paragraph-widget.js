@@ -20,7 +20,7 @@ const ParagraphWidget = (
                     <i onClick={() => {
                         updateWidget(widget)
                         setEditing(false)
-                        console.log("inside update: ",widget)
+                        console.log("inside update: ", widget)
 
                     }} className="fas fa-check float-right"></i>
 
