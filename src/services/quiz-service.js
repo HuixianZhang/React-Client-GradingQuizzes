@@ -1,5 +1,6 @@
 
-const QUIZZES_URL = 'http://localhost:4000/api/quizzes';
+// const QUIZZES_URL = 'http://localhost:4000/api/quizzes';
+const QUIZZES_URL = 'https://nodejs-server-quizzes.herokuapp.com/api/quizzes';
 const findAllQuizzes = () =>{
     return fetch(QUIZZES_URL)
         .then(response => response.json())
@@ -13,7 +14,8 @@ const findQuizzById = (qid) => {
 
 const submitQuiz = (quizId, questions) => {
     // console.log("submit questions:", questions, quizId)
-    fetch(`http://localhost:4000/api/quizzes/${quizId}/attempts`, {
+    // fetch(`http://localhost:4000/api/quizzes/${quizId}/attempts`, {
+    fetch(`https://nodejs-server-quizzes.herokuapp.com/api/quizzes/${quizId}/attempts`, {
         method: 'POST',
         body: JSON.stringify(questions),
         headers: {
