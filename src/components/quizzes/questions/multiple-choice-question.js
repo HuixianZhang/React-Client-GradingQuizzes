@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-const MultipleChoiceQuestion = ({question}) => {
+const MultipleChoiceQuestion = ({question,setselectedAnswers}) => {
     const [yourAnswer, setYourAnswer] = useState("")
     const [GradeYourAnswer, setGradeYourAnswer] = useState("")
 
@@ -8,41 +8,27 @@ const MultipleChoiceQuestion = ({question}) => {
         <div>
             <h5>
                 {question.question}
-                {
-                    question.correct === GradeYourAnswer &&
-                    <i className="fas fa-check color-green"></i>
-                }
-                {
-                    question.correct !== GradeYourAnswer && GradeYourAnswer !== "" &&
-                    <i className="fas fa-times color-red"></i>
-                }
+
             </h5>
+            {/*{JSON.stringify(question)}*/}
+
             <ul className="list-group">
                 {
                     question.choices.map((choice) => {
-                        console.log('choice is:', choice)
+
                         return(
-                            // <li className={`list-group-item ${GradeYourAnswer === question.correct ? 'list-group-item-success' : 'list-group-item-danger'}`}>
-                            // <li className={`list-group-item ${GradeYourAnswer === question.correct ? 'list-group-item-success' : 'list-group-item-danger'}`}>
-                            <li className={`list-group-item ${GradeYourAnswer === "" ? "" : (choice === question.correct && 'list-group-item-success')
-                                || ( GradeYourAnswer === question.correct && GradeYourAnswer === choice && 'list-group-item-success') ||
-                                (GradeYourAnswer === choice ? 'list-group-item-danger' : "")}`}>
+                            <li className={`list-group-item`}>
                                 <label><input
-                                    onClick={() => {setYourAnswer(choice)}}
+                                    onClick={() => {
+                                        setselectedAnswers({...question, answer:choice})
+
+                                        setYourAnswer(choice)
+
+                                    }}
                                     type="radio"
                                     name={question._id}/> {choice}
                                 </label>
 
-                                {
-                                    question.correct === GradeYourAnswer && GradeYourAnswer === choice &&
-                                    <i className="fas fa-check color-green"></i> ||
-                                    choice === question.correct && GradeYourAnswer !== "" &&
-                                    <i className="fas fa-check color-green"></i>
-                                }
-                                {
-                                    question.correct !== GradeYourAnswer && GradeYourAnswer !== "" && GradeYourAnswer === choice &&
-                                    <i className="fas fa-times color-red"></i>
-                                }
 
                             </li>
                         )
@@ -52,9 +38,8 @@ const MultipleChoiceQuestion = ({question}) => {
             <p>
                 Your answer: {yourAnswer}
             </p>
-            <p><button onClick={() => {setGradeYourAnswer(yourAnswer)
-                console.log('your answer is:', yourAnswer)}} className="btn btn-success">Grade</button></p>
         </div>
     )
 }
+
 export default MultipleChoiceQuestion

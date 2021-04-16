@@ -10,6 +10,25 @@ const findQuizzById = (qid) => {
         .then(response => response.json())
 }
 
+
+const submitQuiz = (quizId, questions) => {
+    // console.log("submit questions:", questions, quizId)
+    fetch(`http://localhost:4000/api/quizzes/${quizId}/attempts`, {
+        method: 'POST',
+        body: JSON.stringify(questions),
+        headers: {
+            'content-type': 'application/json'
+        }
+    }).then(response => response.json())
+        .then(result => console.log(result['score']))
+}
+
+// const ShowScore = (quizId) => {
+//     return fetch(`http://localhost:4000/api/quizzes/${quizId}/attempts`)
+//         .then(response => response.json())
+// }
+
+
 export default {
-    findAllQuizzes, findQuizzById
+    findAllQuizzes, findQuizzById, submitQuiz
 }
